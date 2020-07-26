@@ -1,0 +1,19 @@
+extends base
+
+block registration
+  main.main
+  form.form
+    .form__group
+      label(for="name") Name
+      input#name.form__input(type="text" placeholder="eg. john doe" required)
+      label(for="username") Username
+      input#username.form__input(type="text" required)
+      label(for="password") Password
+      input#password.form__input(type="password" placeholder="******" required)
+      label(for="confirmPassword") Confirm Password
+      input#confirmPassword.form__input(type="password" placeholder="******" required)
+      label(for="bio") Bio
+      textarea#bio.form__input(type="text" placeholder="About Your Self (Maximum 200 Charecter)")
+    .form__group
+      button.btn.btn--green Save
+  script(src="/js/registration.js")

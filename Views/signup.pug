@@ -1,0 +1,12 @@
+extends base
+
+block signup
+  main.main
+  form.form
+    .form__group
+      label(for="email") Email Address
+      input#email.form__input(type="email" placeholder="you@example.com" required)
+    .form__group
+      button.btn.btn--green Sign Up
+  
+  script(src="js/signup.js")
