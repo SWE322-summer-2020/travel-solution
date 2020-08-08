@@ -15,3 +15,21 @@ exports.registration = (req, res, next) => {
     title: "Registration Form",
   });
 };
+
+exports.login = (req, res, next) => {
+  res.status(200).render("login", {
+    title: "Login",
+  });
+};
+
+exports.forgotPassword = (req, res, next) => {
+  res.status(200).render("forgotPassword", {
+    title: "Forgot Password",
+  });
+};
+
+exports.resetPassword = (req, res, next) => {
+  res.status(200).render("resetPassword", {
+    title: "Reset Password",
+  });
+};

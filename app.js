@@ -3,9 +3,10 @@ const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const userRouter = require("./Routes/userRouter");
+const viewRouter = require("./Routes/viewRouter");
+const storyRouter = require("./Routes/storyRouter");
 const AppError = require("./Utils/appError");
 const globalErrorHandler = require("./Controllers/errorController");
-const viewRouter = require("./Routes/viewRouter");
 
 dotenv.config({ path: "./config.env" });
 const app = express();
@@ -29,6 +30,7 @@ app.set("views", path.join(__dirname, "Views"));
 // mount all routers
 app.use("/", viewRouter);
 app.use("/user", userRouter);
+app.use("/story", storyRouter);
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Can not find ${req.originalUrl} on this server`, 404));

@@ -1,7 +1,7 @@
 extends baseEmail
 
-block content
- p Hi,
+block verificationEmail
+  p Hi,
   h3 We are glad you are here 
   table.btn.btn-primary(role='presentation', border='0', cellpadding='0', cellspacing='0')
     tbody
@@ -11,7 +11,7 @@ block content
             tbody
               tr
                 td
-                  a(href='#', target='_blank') Confirm Your Email Address
+                  a(href='#{url}', target='_blank') Confirm Your Email Address
   p We just want to confirm you are you
   br
   p if you did not create a Travel Solution account just delete this email and every thing will go back the way it was.

@@ -1,3 +1,4 @@
+const crypto = require("crypto");
 const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
@@ -48,22 +49,47 @@ const userSchema = mongoose.Schema({
   },
   bio: {
     type: String,
-    max: 200,
+    maxLength: [200, "Maximum length 200 charecter"],
+    trim: true,
   },
   avatar: String,
   name: {
     type: String,
-    min: 4,
-    max: 20,
+    minLength: [4, "Minumum length 4 cherecter"],
+    maxLength: [20, "Maximum length 20 charecter"],
   },
 });
 
-userSchema.pre("save", async function() {
+userSchema.pre("save", async function(next) {
   if (!this.isModified("password")) return next();
 
   this.password = await bcrypt.hash(this.password, 12);
   this.confirmPassword = undefined;
 });
+userSchema.pre("save", async function(next) {
+  if (!this.isModified("password") || this.isNew) return next();
+
+  this.passwordChangeAt = Date.now() - 1000;
+});
+
+userSchema.methods.correctPassword = async function(
+  candidatePassword,
+  userPassword
+) {
+  return await bcrypt.compare(candidatePassword, userPassword);
+};
+
+userSchema.methods.createResetToken = async function() {
+  const resetToken = crypto.randomBytes(32).toString("hex");
+
+  this.passwordResetToken = crypto
+    .createHash("sha256")
+    .update(resetToken)
+    .digest("hex");
+  this.passwordResetTokenExp = Date.now() + 600000;
+
+  return resetToken;
+};
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;

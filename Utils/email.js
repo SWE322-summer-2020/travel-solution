@@ -20,7 +20,7 @@ module.exports = class Email {
   }
 
   async send(template, subject) {
-    let html = pug.renderFile(`${__dirname}/../View/emails/${template}.pug`, {
+    let html = pug.renderFile(`${__dirname}/../Views/emails/${template}.pug`, {
       url: this.url,
       subject,
     });
@@ -35,7 +35,13 @@ module.exports = class Email {
 
     await this.newTransport().sendMail(mailOptions);
   }
-  verifyEmailAddress() {
-    send("verificationEmail", "Travel Solution account verification");
+  async verifyEmailAddress() {
+    await this.send(
+      "verificationEmail",
+      "Travel Solution account verification"
+    );
+  }
+  async passwordReset() {
+    await this.send("passwordReset", "Your password reset token");
   }
 };
