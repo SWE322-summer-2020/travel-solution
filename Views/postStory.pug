@@ -1,0 +1,31 @@
+extends base
+
+block postStory
+  main.main
+    .login-form(style="display: inline-block; width: 45vw;")
+      form.form
+        .form__group
+          //- label(for="title") Title
+          input#title.form__input(type="text" placeholder="Your story title" required)
+          br
+          textarea#postBody.form__input(name="post__body", rows="4", placeholder="Write your travel story")
+          br
+          button.btn.btn--green(type="submit" style="float: right") post
+    .login-form(style="display: inline-block; float: right; width: 30vw; ")
+      form.form
+        .form__group
+          input#area.form__input(type="text" placeholder="Select area" required )
+          br
+          input#spot.form__input(type="text" placeholder="Select some spot" required)
+          br
+          input#hotel.form__input(type="text" placeholder="Select hotel" disabled)
+          br
+          input#permission.form__input(type="text" placeholder="Permission(if needed any)")
+          br
+          input#rules.form__input(type="text" placeholder="Rules and regulation(if Any)")
+          br
+          input#police.form__input(type="text" placeholder=" Local/Tourist police information")
+          br
+          button.btn.btn--small.btn--green(style="display: inline-block; float: right") save
+
+  script(src="/js/postStory.js")

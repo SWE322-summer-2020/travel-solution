@@ -70,20 +70,13 @@ const storySchema = mongoose.Schema({
     min: 1,
     max: 5,
   },
+});
 
-  // locations: [
-  //   {
-  //     type: {
-  //       type: String,
-  //       default: 'Point',
-  //       enum: ['Point']
-  //     },
-  //     coordinates: [Number],
-  //     address: String,
-  //     description: String,
-  //     day: Number
-  //   }
-  // ],
+storySchema.virtual("summary").get(function() {
+  let words = this.postBody.split(" ");
+  words = words.slice(0, 30);
+  words = words.join(" ");
+  return words;
 });
 
 storySchema.virtual("comment", {

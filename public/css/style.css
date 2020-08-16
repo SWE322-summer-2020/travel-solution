@@ -42,6 +42,9 @@ body {
   -ms-flex-direction: column;
   flex-direction: column;
 }
+label {
+  margin-left: 11px;
+}
 
 .main {
   background-color: #f7f7f7;
@@ -239,8 +242,8 @@ body {
 }
 
 .btn--small {
-  padding: 1.25rem 3rem !important;
-  font-size: 1.4rem !important;
+  padding: 1.5rem 1rem !important;
+  font-size: 0.7rem !important;
 }
 
 .btn-small,
@@ -1224,7 +1227,7 @@ body {
 
 .login-form {
   margin: 0 auto;
-  max-width: 55rem;
+  width: 50vw;
   background-color: #fff;
   -webkit-box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.06);
   box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.06);

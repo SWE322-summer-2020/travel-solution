@@ -1,0 +1,48 @@
+extends base
+
+block content
+  main.main
+    .card-container
+    
+      each story in stories
+        .card
+          .card__header
+            .card__picture
+              .card__picture-overlay &nbsp;
+              img.card__picture-img(src=`/img/storyImages/${story.coverImage}.jpg`, alt=`${story.name}`)
+            h3.heading-tertirary
+              span= story.title
+
+          .card__details
+            //- h4.card__sub-heading= `${story.difficulty} ${story.duration}-day story`
+            p.card__text= story.summary 
+            .card__data
+              svg.card__icon
+                use(xlink:href='/img/icons.svg#icon-map-pin')
+              each area in story.area
+                div(style="background: #333; margin-right: 2px; font-size: 1rem")= area.name 
+            .card__data
+              svg.card__icon
+                use(xlink:href='/img/icons.svg#icon-calendar')
+              span= story.createdAt.toLocaleString('en-us', {month: 'long', year: 'numeric'})
+            .card__data
+              svg.card__icon
+                use(xlink:href='/img/icons.svg#icon-map-pin')
+              each a in story.area
+                each spot in a.sopts
+                  span(style="background: #333; margin-right: 2px; font-size: .7rem")= spot.name
+            .card__data
+              svg.card__icon
+                use(xlink:href='/img/icons.svg#icon-user')
+              //- span= `${story.maxGroupSize} people`
+
+          .card__footer
+            p
+              //- span.card__footer-value= `$${story.price}`
+              | 
+              span.card__footer-text per person
+            p.card__ratings
+              span.card__footer-value= story.ratings
+              | 
+              //- span.card__footer-text= `rating (${story.ratingsQuantity})`
+            a.btn.btn--green.btn--small(href=`/story/${story._id}`) Read more
